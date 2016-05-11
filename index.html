@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<style type="text/css">
+.roundHolder{
+  border-radius:80%;
+  background-color:white;
+}
+.gameBoard{
+  width:60%;
+  line-height:4;
+  float:left;
+  padding-bottom: :50px;
+  padding-left:10%;
+
+}
+.currentPlayer{
+  float:left;
+  padding-left:5%;
+  padding-right:5%;
+}
+.firstRow{
+  background-color: white;
+  height:20px;
+  width:30px;
+  height:65px;
+}
+.rowArrow{
+  width:20px;
+  height:20px;
+}
+.firstRowDiv{
+  background-color: white;
+}
+.rowSelector{
+  width:60%;
+  line-height:4;
+  float:left;
+}
+.gameSection{
+  padding-top:0px;
+}
+.headerSection{
+  font-size:30px;
+  padding-top:1%;
+  text-align:center;
+}
+.ballDiv{
+  position: relative;
+    left:0px; 
+    top:-200px;
+    -webkit-animation-name: ballMotion; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+    animation-name: ballMotion;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    border-radius: 50%;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes ballMotion {
+
+}
+
+/* Standard syntax */
+@keyframes ballMotion {
+
+}
+.message{
+    width:200px;
+    height:20px;
+    height:auto;
+    position:absolute;
+    left:50%;
+    margin-left:-100px;
+    bottom:50%;
+    background-color: #383838;
+    color: #F0F0F0;
+    font-family: Calibri;
+    font-size: 20px;
+    padding:10px;
+    text-align:center;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+
+}
+</style>
+</head>
+<body>
+<div style="width:100%;height:100%">
+  <div class="headerSection">Connect Four</div>
+  <div id="changeColorBall" style="width:80px;height:60px;"></div>
+  <div class="message" style="display:none"></div>
+  <div class="currentPlayer" data-curPlayer="Player 1">Player 1's turn</div>
+  <div class="gameSection">
+<table class="gameBoard">
+<thead>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View"></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+  <th class="firstRow" ><div class="firstRowDiv"><img class="rowArrow" src="arrow.png" alt="Mountain View" ></div></th>
+
+</thead>
+  <tbody>
+  <tr>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td class="cellSection "><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+    <td class="cellSection"><div class="roundHolder empty">&nbsp;</div></td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$('.rowArrow').hide()
+$('.gameBoard').find('td').css({"background-color":"#496DD4"})
+
+$('.message').text("Click on a cell to Begin!!")
+    $('.message').css({"display":"block"})
+    setTimeout(function(){ 
+	$('.message').css({"display":"none"})
+   }, 1500);
+
+$( ".cellSection" ).hover(
+  function() {
+    var $th = $(this).closest('table').find('th').eq($(this).index());  
+    $($th).find('.rowArrow').show()
+  
+  }, function() {
+    var $th = $(this).closest('table').find('th').eq($(this).index());  
+    $($th).find('.rowArrow').hide()  
+  }
+);
+
+//cell Selection
+$( ".cellSection" ).click(function() {
+
+    var index = $(this).index() + 1
+    fillNextAvailableBlock(index)
+
+});
+
+//fill the selected div
+var fillNextAvailableBlock= function(columnNumber){
+  
+  var $lastEmptyCell = $('.gameBoard').find('tbody tr td:nth-child('+columnNumber+')').find('.empty').last()
+  if($lastEmptyCell.length > 0)
+  {
+    $($lastEmptyCell).removeClass('empty')
+    var currentPlayer = $('.currentPlayer').attr('data-curPlayer')
+    $($lastEmptyCell).attr({"player":currentPlayer})
+    var color;
+    if(currentPlayer == "Player 1")
+    {
+      $('.currentPlayer').attr({'data-curPlayer':"Player 2"})
+      $('.currentPlayer').text("Player 2's turn")
+      color="#B72E2E"
+    }
+    else {
+      $('.currentPlayer').attr({'data-curPlayer':"Player 1"})
+      $('.currentPlayer').text("Player 1's turn")
+      color="green"
+    }
+    var leftIndex=$($lastEmptyCell).position().left
+    var topIndex=$($lastEmptyCell).position().top
+    animateLocationOfBall(currentPlayer,leftIndex,topIndex,$lastEmptyCell)    
+  }
+	else{
+	  //alert( "Choose a different column")
+		  $('.message').text("Choose a different column")
+		$('.message').css({"display":"block"})
+		setTimeout(function(){ 
+		$('.message').css({"display":"none"})
+	   }, 1000);
+	}
+}
+
+//Motion of the ball to div
+var animateLocationOfBall=function(currentPlayer,leftIndex,topIndex,$lastEmptyCell){
+  var cssRule;
+  var color;
+    if(currentPlayer =="Player 1")
+    color="#B72E2E"
+    else {
+      color="green"
+    }
+  // Returns a reference to the specified CSS rule(s).
+
+//  function getRule() {
+
+      var rule;
+
+      var ss = document.styleSheets;
+
+      for (var i = 0; i < ss.length; ++i) {
+
+          // loop through all the rules!
+
+          for (var x = 0; x < ss[i].cssRules.length; ++x) {
+
+              rule = ss[i].cssRules[x];
+
+              if (rule.name == "ballMotion" && rule.type   == CSSRule.KEYFRAMES_RULE) {
+
+                  cssRule = rule;
+
+              }
+
+          }
+
+      }
+
+  cssRule.appendRule("0% { background-color:" + color+ "; left:"+ leftIndex +"px; top: -200px;}")
+
+  cssRule.appendRule("90% { background-color:" + color+ "; left:"+ leftIndex +"px; top:"+ (topIndex - 200) +"px;}")
+  cssRule.appendRule("100% { background-color:white; left:"+ leftIndex +"px; top:"+ (topIndex) +"px;}")
+  $('#changeColorBall').addClass('ballDiv')
+  setTimeout(function(){ 
+    $($lastEmptyCell).css({"background-color":color})
+    $('#changeColorBall').removeClass('ballDiv') 
+    checkIfWon(currentPlayer,$lastEmptyCell)
+   }, 1000);
+  
+}
+
+
+//Check for winning contions
+var checkIfWon=function(currentPlayer,currentIndex){
+
+  var verticalRes
+  var diagonalRightRes
+  var diagonalLeftRes
+  var tdIndex =$(currentIndex).closest('td').index()
+  var trIndex
+
+  var horizontalRes= checkIfHorizontalTrue(currentPlayer,tdIndex,currentIndex)
+  if(horizontalRes == false)
+  {
+     trIndex= $(currentIndex).closest('tr').index()
+    verticalRes= checkIfVerticalTrue(currentPlayer,trIndex,currentIndex)
+  }
+  if(verticalRes == false)
+  {
+    diagonalLeftRes = checkIfDiagonalTrue(currentPlayer,trIndex,tdIndex,currentIndex)
+  }
+  if(diagonalLeftRes == false)
+  {
+    diagonalRightRes = checkIfDiagonalLeftTrue(currentPlayer,trIndex,tdIndex,currentIndex)
+  }
+  
+  if(horizontalRes || verticalRes || diagonalLeftRes || diagonalRightRes)
+  {
+    //alert(currentPlayer+" Won!!")
+    $('.message').text("GAME OVER !! "+currentPlayer+" Won!!")
+    $('.message').css({"display":"block"})
+    setTimeout(function(){ 
+        location.reload()
+   }, 2000);
+    
+  }
+}
+
+
+var checkIfHorizontalTrue=function(currentPlayer,tdIndex,currentIndex){
+  
+		var i= tdIndex-1 , j=tdIndex+1
+		var row = $(currentIndex).closest('tr').find('td')
+		var count=1;
+		while(true)
+		{
+		  if(i>=0 && row[i] != undefined)
+		  {
+			if($($(row[i]).find('.roundHolder'))[0].hasAttribute('player'))
+			{
+				if($(row[i]).find('.roundHolder').attr('player') == currentPlayer){
+				  count++;
+				  i--;
+				}
+				else{
+				  i=-1
+				}
+			}
+			else{
+				  i=-1
+				}
+		   // i--;
+			if(count ==4){
+			  break;
+			}
+		  }
+		  if(j< 7 && row[j] != undefined)
+		  {
+			if($($(row[j]).find('.roundHolder'))[0].hasAttribute('player'))
+			{
+			  if($(row[j]).find('.roundHolder').attr('player') == currentPlayer){
+				count++;
+				j++;
+			  }
+			 // j++;
+			 else {
+				j=7;
+			  }
+			  
+			}
+			else {
+				j=7;
+			  }
+			
+			if(count ==4){
+			  break;
+			}
+		  }
+		  if((row[i] == undefined && row[j] == undefined) ||(i<0 && j>6))
+			  break;
+
+		}
+		if(count ==4){
+		  return true;
+		}
+		else {
+		  return false
+		}
+}
+var checkIfVerticalTrue = function(currentPlayer,tdIndex,currentIndex)
+{
+
+  
+		var i= tdIndex-1 , j=tdIndex+1
+		var cell = $(currentIndex).closest('td')
+		var columnNumber = $(cell).index() +1
+		var row = $(cell).closest('.gameBoard').find('tbody tr td:nth-child('+columnNumber+')')
+		var count=1;
+		while(true)
+		{
+
+		  if(i>=0 && row[i] != undefined)
+		  {
+			if($($(row[i]).find('.roundHolder'))[0].hasAttribute('player'))
+			{
+			if($(row[i]).find('.roundHolder').attr('player') == currentPlayer){
+			  count++;
+			  i--;
+			}
+			else {
+			  i=-1
+			}
+		  }
+		  else {
+			  i=-1
+			}
+			//i--;
+			if(count ==4){
+			  break;
+			}
+		  }
+		  if(j< 7 && row[j] != undefined)
+		  {
+			if($($(row[j]).find('.roundHolder'))[0].hasAttribute('player'))
+			{
+			if($(row[j]).find('.roundHolder').attr('player') == currentPlayer){
+			  count++;
+			  j++;
+			}
+			else{
+			  j=7
+			}
+		  }
+		  else{
+			  j=7
+			}
+			//j++;
+			if(count ==4){
+			  break;
+			}
+		  }
+		  if((row[i] == undefined && row[j] == undefined) ||(i<0 && j>6))
+			  break;
+
+		}
+		if(count ==4){
+		  return true;
+		}
+		else {
+		  return false
+		}
+}
+var checkIfDiagonalTrue=function(currentPlayer,trIndex,tdIndex,currentIndex){
+  
+  var i= trIndex+2 , j=tdIndex,k=trIndex,l=tdIndex+2
+  var cell = $(currentIndex).closest('td')
+  var count=1;
+  while(true)
+  {
+
+    if(i<7 && j>=0)
+    {
+      var cellToCompare = $(cell).closest('.gameBoard').find('tr:nth-child('+i+')').find('td:nth-child('+j+')')
+      var $td = $(cellToCompare).find('.roundHolder')
+      if($td.length >0)
+      {
+      if($td.hasClass('empty') == false)
+      {
+      if($($td).attr('player') == currentPlayer){
+        count++;
+        i++;
+        j--;
+      }
+      else{
+        i=7;
+        j=-1
+      }
+      //}
+
+    }
+    else{
+      i=7;
+      j=-1
+    }
+  }
+    else{
+      i=7;
+      j=-1
+    }
+      if(count ==4){
+        break;
+      }
+    }
+    else{
+      i=7;
+      j=-1
+    }
+    if(k>=0 && l<7)
+    {
+      var cellToCompare = $(cell).closest('.gameBoard').find('tr:nth-child('+k+')').find('td:nth-child('+l+')')
+      var $td = $(cellToCompare).find('.roundHolder')
+      if($td.length > 0)
+      {
+      if($td.hasClass('empty') == false)
+      {
+    
+        if($($(cellToCompare).find('.roundHolder')).attr('player') == currentPlayer){
+          count++;
+          k--;
+          l++;
+        }
+        else{
+          k=-1;
+          l=7
+        }
+
+      }
+      else{
+        k=-1;
+        l=7
+      }
+
+      if(count ==4){
+        break;
+      }
+    }
+    else{
+      k=-1;
+      l=7
+    }
+  }
+  else{
+    k=-1;
+    l=7
+  }
+    if(i>6 && j<0 && k<0 && l>6)
+        break;
+
+  }
+  if(count ==4){
+    return true;
+  }
+  else {
+    return false
+  }
+}
+
+var checkIfDiagonalLeftTrue=function(currentPlayer,trIndex,tdIndex,currentIndex){
+  
+  var i= trIndex , j=tdIndex,k=trIndex+2,l=tdIndex+2
+  var cell = $(currentIndex).closest('td')
+  var count=1;
+  while(true)
+  {
+
+    if(i<7 && j>=0)
+    {
+        var cellToCompare = $(cell).closest('.gameBoard').find('tr:nth-child('+i+')').find('td:nth-child('+j+')')
+        var $td = $(cellToCompare).find('.roundHolder')
+        if($td.length >0)
+        {
+          if($td.hasClass('empty') == false)
+          {
+            
+              if($($td).attr('player') == currentPlayer){
+                count++;
+                i++;
+                j--;
+                //i--;
+              }
+              else{
+                i=7;
+                j=-1
+              }
+
+        }
+        else{
+          i=7;
+          j=-1
+        }
+      }
+      else{
+        i=7;
+        j=-1
+      }
+      if(count ==4){
+          break;
+      }
+    }
+    else{
+      i=7;
+      j=-1
+    }
+    if(k<7 && l<7)
+    {
+      var cellToCompare = $(cell).closest('.gameBoard').find('tr:nth-child('+k+')').find('td:nth-child('+l+')')
+      var $td = $(cellToCompare).find('.roundHolder')
+      if($td.length > 0)
+      {
+      if($td.hasClass('empty') == false)
+      {
+        if($($(cellToCompare).find('.roundHolder')).attr('player') == currentPlayer){
+          count++;
+          k++;
+          l++;
+        }
+        else{
+          k=7;
+          l=7
+        }
+
+      }
+      else{
+        k=7;
+        l=7
+      }
+
+      if(count ==4){
+        break;
+      }
+    }
+    else{
+      k=7;
+      l=7
+    }
+  }
+  else{
+    k=7;
+    l=7
+  }
+    if(i>6 && j<0 && k>6 && l>6)
+        break;
+
+  }
+  if(count ==4){
+    return true;
+  }
+  else {
+    return false
+  }
+}
+</script>
